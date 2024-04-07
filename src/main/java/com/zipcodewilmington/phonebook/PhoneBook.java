@@ -10,10 +10,10 @@ import java.util.HashMap;
  */
 public class PhoneBook {
 
-    private final Map<String, List<String>> phonebook;
+    private final Map<String, List<String>> map;
 
     public PhoneBook(Map<String, List<String>> map) {
-        this.phonebook =new LinkedHashMap<>();
+        this.map =map;
     }
 
     public PhoneBook() {
@@ -25,39 +25,39 @@ public class PhoneBook {
 //        List<String> arr = new ArrayList<>();
 //        arr.add(phoneNumber);
 //        this.phonebook.put(name, arr);
-        this.phonebook.put(name, Collections.singletonList(phoneNumber));
+        this.map.put(name, Collections.singletonList(phoneNumber));
     }
 
     public void addAll(String name, String... phoneNumbers) {
 //        List newPhoneNumbers = Arrays.asList(phoneNumbers);
-        this.phonebook.put(name, List.of(phoneNumbers));
+        this.map.put(name, List.of(phoneNumbers));
     }
 
     public void remove(String name) {
-        phonebook.remove(name);
+        map.remove(name);
 
     }
 
     public Boolean hasEntry(String name) {
-        return phonebook.containsKey(name);
+        return map.containsKey(name);
     }
     public Boolean hasEntry(String name, String phoneNumber) {
         // retrive entry from phone book
 
         //declaring var list
-        List <String> numbers = phonebook.get(name);
+        List <String> numbers = map.get(name);
         //see now if list contains the value
 
         return numbers.contains(phoneNumber);
     }
 
     public List<String> lookup(String name) {
-        return phonebook.get(name);
+        return map.get(name);
     }
 
     public String reverseLookup(String phoneNumber) {
         String key ="";
-        for (Map.Entry<String, List<String>> phone : phonebook.entrySet()) {
+        for (Map.Entry<String, List<String>> phone : map.entrySet()) {
             String variable = phone.getValue().toString();
             variable =variable.substring(1,variable.length()-1);
             if (Objects.equals(variable,phoneNumber)) {
@@ -69,7 +69,7 @@ public class PhoneBook {
 
     public List<String> getAllContactNames() {
         List <String> result = new ArrayList<>();
-        for (Map.Entry<String, List<String>> PhoneBook : this.phonebook.entrySet()) {
+        for (Map.Entry<String, List<String>> PhoneBook : this.map.entrySet()) {
              result.add(PhoneBook.getKey());
         }
 
@@ -77,6 +77,6 @@ public class PhoneBook {
     }
 
     public Map<String, List<String>> getMap() {
-        return phonebook;
+        return map;
     }
 }
